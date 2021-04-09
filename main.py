@@ -167,199 +167,199 @@ def SW5pdA():
 #
 #
 # # -------------------------------ETIQUETAS**------------------------------*
-@app.route('/Etiquetas-funciones')
-@check_token
-@check_habilitado
-def TGlzdF9FdGlxdWV0YXNGdW5jaW9uZXM():
-    return List_EtiquetasFunciones()
-
-
-@app.route('/Etiquetas-funciones/Etiquetas')
-@check_token
-@check_habilitado
-def TGlzdF9FdGlxdWV0YXM():
-    return List_Etiquetas()
-
-
-@app.route('/Etiquetas-funciones/Funciones')
-@check_token
-@check_habilitado
-def TGlzdF9GdW5jaW9uZXM():
-    return List_Funciones()
-
-
-# ETIQUETA
-@app.route('/Registrar-etiqueta', methods=['POST'])
-@check_token
-@check_habilitado
-def Q3JlYXRlX0V0aXF1ZXRh():
-    return Create_Etiqueta()
-
-
-@app.route('/Etiquetas-funciones/Editar_etiqueta/<string:id>')
-@check_token
-def R2V0X2V0aXF1ZXRh(id):
-    return Get_etiqueta(id)
-
-
-@app.route('/Etiquetas-funciones/Update_etiqueta/<id>', methods=['POST'])
-@check_token
-@check_habilitado
-def VXBkYXRlX0V0aXF1ZXRh(id):
-    return Update_Etiqueta(id)
-
-
-# FUNCION
-@app.route('/Etiquetas-funciones/Registrar-funcion', methods=['POST'])
-@check_token
-@check_habilitado
-def Q3JlYXRlX0Z1bmNpb25lcw():
-    return Create_Funciones()
-
-
-@app.route('/Etiquetas-funciones/Editar_funcion/<string:id>')
-@check_token
-def R2V0X2Z1bmNpb24(id):
-    return Get_funcion(id)
-
-
-@app.route('/Etiquetas-funciones/Update_funcion/<id>', methods=['POST'])
-@check_token
-@check_habilitado
-def VXBkYXRlX0Z1bmNpb24(id):
-    return Update_Funcion(id)
-
-
-# ASIGNACION
-@app.route('/Etiquetas-funciones/Asignaciones/<string:id>')
-@check_token
-def R2V0X0Z1bmNpb25lc3hFdGlxdWV0YQ(id):
-    return Get_FuncionesxEtiqueta(id)
-
-
-@app.route('/Etiquetas-funciones/Eliminar_asignacion/<string:id>/<string:eid>')
-@check_token
-@check_habilitado
-def ZGVsZXRlX0Z1bmNpb25lc3hFdGlxdWV0YQ(id, eid):
-    return delete_FuncionesxEtiqueta(id, eid)
-
-
-@app.route('/Etiquetas-funciones/Asignar-funcion/<string:id>/<string:fid>')
-@check_token
-@check_habilitado
-def Q3JlYXRlX0FzaWduYWNpb24(id, fid):
-    return Create_Asignacion(id, fid)
-# ------------------------------************------------------------------*
-# ------------------------------************------------------------------*
-# ------------------------------************------------------------------*
-# ------------------------------************------------------------------*
-# ------------------------------MANTENIMIENTO-----------------------------*
-
-
-@app.route('/Mantenimiento/Areas')
-@check_token
-@app.template_filter()
-def TGlzdF9BcmVhcw():
-    return List_Areas()
-
-
-@app.route('/Mantenimiento/Registrar_MT_area', methods=['POST'])
-@check_token
-@check_habilitado
-def Q3JlYXRlX0FyZWE():
-    return Create_Area()
-
-
-@app.route('/Mantenimiento/Editar_MT_area/<string:id>')
-@check_token
-def Z2V0X2FyZWE(id):
-    return get_area(id)
-
-
-@app.route('/Mantenimiento/Update_MT_area/<id>', methods=['POST'])
-@check_token
-@check_habilitado
-def dXBkYXRlX1NnX2FyZWE(id):
-    return update_MT_area(id)
-
-# -------AMBIENTES----------
-
-@app.route('/Mantenimiento/Ambientes')
-@check_token
-def TGlzdF9BbWJpZW50ZXM():
-    return List_Ambientes()
-
-
-@app.route('/Mantenimiento/Registrar_MT_Ambiente', methods=['POST'])
-@check_token
-@check_habilitado
-def Q3JlYXRlX0FtYmllbnRl():
-    return Create_Ambiente()
-
-
-@app.route('/Mantenimiento/Editar_MT_Ambiente/<string:id>')
-@check_token
-def R2V0X2FtYmllbnRl(id):
-    return Get_ambiente(id)
-
-
-@app.route('/Mantenimiento/Update_MT_Ambiente/<id>', methods=['POST'])
-@check_token
-@check_habilitado
-def VXBkYXRlX1NnX2FtYmllbnRl(id):
-    return Update_MT_ambiente(id)
-
-@app.route('/Mantenimiento/Asignaciones/<string:id>')
-@check_token
-def R2V0X2FtYmllbnRlX1Y(id):
-    return Get_ambiente_V(id)
-
-@app.route('/Mantenimiento/Asignaciones/Vincular/<string:id>/<string:eid>' )
-@check_token
-@check_habilitado
-def Q3JlYXRlX1ZpbmN1bGFy(id,eid):
-    return Create_Vincular(id,eid)
-@app.route('/Mantenimiento/Asignaciones/Desvincular/<string:id>/<string:eid>')
-@check_token
-@check_habilitado
-def ZGVsZXRlX0Rlc3ZpbmN1bGFy(id, eid):
-    return delete_Desvincular(id, eid)
-
-# -------TRABAJO----------
-
-@app.route('/Mantenimiento/Asignados_Trabajo')
-@check_token
-def TGlzdF9Bc2lnbmFkb3M():
-    return List_Asignados()
-
-@app.route('/Mantenimiento/Asignados_Trabajo/Asignaciones/<string:id>', methods=['GET', 'POST'])
-@check_token
-def R2V0X2FzaWduYWRvX3RyYWJham8(id):
-    return Get_asignado_trabajo(id)
-
-@app.route('/Mantenimiento/Asignados_Trabajo/Asignar/<string:id>/<string:aid>')
-@check_token
-@check_habilitado
-def UjJWMFgyRnphV2R1WVdSdlgzUnlZV0poYW04(id, aid):
-    return Create_asignado_trabajo(id,aid)
-
-@app.route('/Mantenimiento/Asignados_Trabajo/Eliminar/<string:id>/<string:eid>')
-@check_token
-@check_habilitado
-def ZGVsZXRlX2VsaW1pbmFyX2FzaWduYWRv(id, eid):
-    return delete_eliminar_asignado(id, eid)
-
-# -------TRABAJO ASIGNADO----------
-
-@app.route('/Mantenimiento/Asignaciones', methods=['GET', 'POST'])
-@check_token
-def TGlzdF9Bc2lnbmFjaW9uZXM():
-    return List_Asignaciones()
-
-@app.route('/Mantenimiento/Asignaciones/Respuesta/<string:id>', methods=['GET', 'POST'])
-@check_token
-def YXNpZ25hZG9faWQ(id):
-    return asignado_id(id)
+# @app.route('/Etiquetas-funciones')
+# @check_token
+# @check_habilitado
+# def TGlzdF9FdGlxdWV0YXNGdW5jaW9uZXM():
+#     return List_EtiquetasFunciones()
+#
+#
+# @app.route('/Etiquetas-funciones/Etiquetas')
+# @check_token
+# @check_habilitado
+# def TGlzdF9FdGlxdWV0YXM():
+#     return List_Etiquetas()
+#
+#
+# @app.route('/Etiquetas-funciones/Funciones')
+# @check_token
+# @check_habilitado
+# def TGlzdF9GdW5jaW9uZXM():
+#     return List_Funciones()
+#
+#
+# # ETIQUETA
+# @app.route('/Registrar-etiqueta', methods=['POST'])
+# @check_token
+# @check_habilitado
+# def Q3JlYXRlX0V0aXF1ZXRh():
+#     return Create_Etiqueta()
+#
+#
+# @app.route('/Etiquetas-funciones/Editar_etiqueta/<string:id>')
+# @check_token
+# def R2V0X2V0aXF1ZXRh(id):
+#     return Get_etiqueta(id)
+#
+#
+# @app.route('/Etiquetas-funciones/Update_etiqueta/<id>', methods=['POST'])
+# @check_token
+# @check_habilitado
+# def VXBkYXRlX0V0aXF1ZXRh(id):
+#     return Update_Etiqueta(id)
+#
+#
+# # FUNCION
+# @app.route('/Etiquetas-funciones/Registrar-funcion', methods=['POST'])
+# @check_token
+# @check_habilitado
+# def Q3JlYXRlX0Z1bmNpb25lcw():
+#     return Create_Funciones()
+#
+#
+# @app.route('/Etiquetas-funciones/Editar_funcion/<string:id>')
+# @check_token
+# def R2V0X2Z1bmNpb24(id):
+#     return Get_funcion(id)
+#
+#
+# @app.route('/Etiquetas-funciones/Update_funcion/<id>', methods=['POST'])
+# @check_token
+# @check_habilitado
+# def VXBkYXRlX0Z1bmNpb24(id):
+#     return Update_Funcion(id)
+#
+#
+# # ASIGNACION
+# @app.route('/Etiquetas-funciones/Asignaciones/<string:id>')
+# @check_token
+# def R2V0X0Z1bmNpb25lc3hFdGlxdWV0YQ(id):
+#     return Get_FuncionesxEtiqueta(id)
+#
+#
+# @app.route('/Etiquetas-funciones/Eliminar_asignacion/<string:id>/<string:eid>')
+# @check_token
+# @check_habilitado
+# def ZGVsZXRlX0Z1bmNpb25lc3hFdGlxdWV0YQ(id, eid):
+#     return delete_FuncionesxEtiqueta(id, eid)
+#
+#
+# @app.route('/Etiquetas-funciones/Asignar-funcion/<string:id>/<string:fid>')
+# @check_token
+# @check_habilitado
+# def Q3JlYXRlX0FzaWduYWNpb24(id, fid):
+#     return Create_Asignacion(id, fid)
+# # ------------------------------************------------------------------*
+# # ------------------------------************------------------------------*
+# # ------------------------------************------------------------------*
+# # ------------------------------************------------------------------*
+# # ------------------------------MANTENIMIENTO-----------------------------*
+#
+#
+# @app.route('/Mantenimiento/Areas')
+# @check_token
+# @app.template_filter()
+# def TGlzdF9BcmVhcw():
+#     return List_Areas()
+#
+#
+# @app.route('/Mantenimiento/Registrar_MT_area', methods=['POST'])
+# @check_token
+# @check_habilitado
+# def Q3JlYXRlX0FyZWE():
+#     return Create_Area()
+#
+#
+# @app.route('/Mantenimiento/Editar_MT_area/<string:id>')
+# @check_token
+# def Z2V0X2FyZWE(id):
+#     return get_area(id)
+#
+#
+# @app.route('/Mantenimiento/Update_MT_area/<id>', methods=['POST'])
+# @check_token
+# @check_habilitado
+# def dXBkYXRlX1NnX2FyZWE(id):
+#     return update_MT_area(id)
+#
+# # -------AMBIENTES----------
+#
+# @app.route('/Mantenimiento/Ambientes')
+# @check_token
+# def TGlzdF9BbWJpZW50ZXM():
+#     return List_Ambientes()
+#
+#
+# @app.route('/Mantenimiento/Registrar_MT_Ambiente', methods=['POST'])
+# @check_token
+# @check_habilitado
+# def Q3JlYXRlX0FtYmllbnRl():
+#     return Create_Ambiente()
+#
+#
+# @app.route('/Mantenimiento/Editar_MT_Ambiente/<string:id>')
+# @check_token
+# def R2V0X2FtYmllbnRl(id):
+#     return Get_ambiente(id)
+#
+#
+# @app.route('/Mantenimiento/Update_MT_Ambiente/<id>', methods=['POST'])
+# @check_token
+# @check_habilitado
+# def VXBkYXRlX1NnX2FtYmllbnRl(id):
+#     return Update_MT_ambiente(id)
+#
+# @app.route('/Mantenimiento/Asignaciones/<string:id>')
+# @check_token
+# def R2V0X2FtYmllbnRlX1Y(id):
+#     return Get_ambiente_V(id)
+#
+# @app.route('/Mantenimiento/Asignaciones/Vincular/<string:id>/<string:eid>' )
+# @check_token
+# @check_habilitado
+# def Q3JlYXRlX1ZpbmN1bGFy(id,eid):
+#     return Create_Vincular(id,eid)
+# @app.route('/Mantenimiento/Asignaciones/Desvincular/<string:id>/<string:eid>')
+# @check_token
+# @check_habilitado
+# def ZGVsZXRlX0Rlc3ZpbmN1bGFy(id, eid):
+#     return delete_Desvincular(id, eid)
+#
+# # -------TRABAJO----------
+#
+# @app.route('/Mantenimiento/Asignados_Trabajo')
+# @check_token
+# def TGlzdF9Bc2lnbmFkb3M():
+#     return List_Asignados()
+#
+# @app.route('/Mantenimiento/Asignados_Trabajo/Asignaciones/<string:id>', methods=['GET', 'POST'])
+# @check_token
+# def R2V0X2FzaWduYWRvX3RyYWJham8(id):
+#     return Get_asignado_trabajo(id)
+#
+# @app.route('/Mantenimiento/Asignados_Trabajo/Asignar/<string:id>/<string:aid>')
+# @check_token
+# @check_habilitado
+# def UjJWMFgyRnphV2R1WVdSdlgzUnlZV0poYW04(id, aid):
+#     return Create_asignado_trabajo(id,aid)
+#
+# @app.route('/Mantenimiento/Asignados_Trabajo/Eliminar/<string:id>/<string:eid>')
+# @check_token
+# @check_habilitado
+# def ZGVsZXRlX2VsaW1pbmFyX2FzaWduYWRv(id, eid):
+#     return delete_eliminar_asignado(id, eid)
+#
+# # -------TRABAJO ASIGNADO----------
+#
+# @app.route('/Mantenimiento/Asignaciones', methods=['GET', 'POST'])
+# @check_token
+# def TGlzdF9Bc2lnbmFjaW9uZXM():
+#     return List_Asignaciones()
+#
+# @app.route('/Mantenimiento/Asignaciones/Respuesta/<string:id>', methods=['GET', 'POST'])
+# @check_token
+# def YXNpZ25hZG9faWQ(id):
+#     return asignado_id(id)
 
 # ------------------------------************------------------------------*
 # ------------------------------************------------------------------*
@@ -367,15 +367,15 @@ def YXNpZ25hZG9faWQ(id):
 # ------------------------------************------------------------------*
 # ---------------------------------REPORTE--------------------------------*
 
-@app.route('/Mantenimiento/Reportes/Reporte_Trabajador', methods=['GET', 'POST'])
-@check_token
-def TGlzdF9SZXBvcnRl():
-    return List_Reporte()
-
-@app.route('/Mantenimiento/Reportes/Reporte_Trabajador/Excel')
-@check_token
-def reporte_excel_RxTs():
-    return reporte_excel_RxT()
+# @app.route('/Mantenimiento/Reportes/Reporte_Trabajador', methods=['GET', 'POST'])
+# @check_token
+# def TGlzdF9SZXBvcnRl():
+#     return List_Reporte()
+#
+# @app.route('/Mantenimiento/Reportes/Reporte_Trabajador/Excel')
+# @check_token
+# def reporte_excel_RxTs():
+#     return reporte_excel_RxT()
 
 if __name__ == "__main__":
     app.run()
