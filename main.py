@@ -1,165 +1,172 @@
-from app import app
-from flask_mail import Mail
-from functions.Login import Init, Login, Logout, check_habilitado, check_token
+# from app import app
+# from flask_mail import Mail
+# from functions.Login import Init, Login, Logout, check_habilitado, check_token
+#
+from flask import Flask
 
-from functions.Usuarios import Lis_Usuarios, create, get_usuario, update, delete, accesos, create_accesos, delete_accesos
-from functions.config import List_Configuracion, Create_Configuracion, Get_Configuracion, Update_Configuracion
-from functions.empresas import List_Empresas, create_Empresas, get_empresa, update_empresa
-
-# MANTENIMIENTO
-from functions.Mantenimiento.Areas import List_Areas, Create_Area, get_area, update_MT_area
-from functions.Mantenimiento.Ambientes import List_Ambientes, Create_Ambiente, Get_ambiente, Update_MT_ambiente, Get_ambiente_V, Create_Vincular, delete_Desvincular
-from functions.Mantenimiento.EtiquetasFunciones import List_EtiquetasFunciones, List_Etiquetas, List_Funciones, \
-    Create_Etiqueta, Get_etiqueta, Update_Etiqueta, Create_Funciones, Get_funcion, Update_Funcion, \
-    Create_Asignacion, Get_FuncionesxEtiqueta, delete_FuncionesxEtiqueta
-from functions.Mantenimiento.Trabajo import List_Asignados, Get_asignado_trabajo, Create_asignado_trabajo, delete_eliminar_asignado
-from functions.Mantenimiento.Asignado import List_Asignaciones, asignado_id
-
-# REPORTE
-from functions.Mantenimiento.Reportes import List_Reporte, reporte_excel_RxT
-# CONEXION
-from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow
-
-mail = Mail()
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root@localhost/SAPPJIMENEZ'
-
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db = SQLAlchemy(app)
-ma = Marshmallow(app)
-
-
-# CONFIGURACIONES
-@app.route('/Configuracion')
-@check_token
-def TGlzdF9Db25maQ():
-    return List_Configuracion()
-
-
-@app.route('/Registrar_configuracion', methods=['POST'])
-@check_token
-@check_habilitado
-def Q3JlYXRlX0NvbmZp():
-    return Create_Configuracion()
+app = Flask(__name__)
+app.secret_key = "secret key"
+# from functions.Usuarios import Lis_Usuarios, create, get_usuario, update, delete, accesos, create_accesos, delete_accesos
+# from functions.config import List_Configuracion, Create_Configuracion, Get_Configuracion, Update_Configuracion
+# from functions.empresas import List_Empresas, create_Empresas, get_empresa, update_empresa
+#
+# # MANTENIMIENTO
+# from functions.Mantenimiento.Areas import List_Areas, Create_Area, get_area, update_MT_area
+# from functions.Mantenimiento.Ambientes import List_Ambientes, Create_Ambiente, Get_ambiente, Update_MT_ambiente, Get_ambiente_V, Create_Vincular, delete_Desvincular
+# from functions.Mantenimiento.EtiquetasFunciones import List_EtiquetasFunciones, List_Etiquetas, List_Funciones, \
+#     Create_Etiqueta, Get_etiqueta, Update_Etiqueta, Create_Funciones, Get_funcion, Update_Funcion, \
+#     Create_Asignacion, Get_FuncionesxEtiqueta, delete_FuncionesxEtiqueta
+# from functions.Mantenimiento.Trabajo import List_Asignados, Get_asignado_trabajo, Create_asignado_trabajo, delete_eliminar_asignado
+# from functions.Mantenimiento.Asignado import List_Asignaciones, asignado_id
+#
+# # REPORTE
+# from functions.Mantenimiento.Reportes import List_Reporte, reporte_excel_RxT
+# # CONEXION
+# from flask_sqlalchemy import SQLAlchemy
+# from flask_marshmallow import Marshmallow
+#
+# mail = Mail()
+#
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root@localhost/SAPPJIMENEZ'
+#
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+#
+# db = SQLAlchemy(app)
+# ma = Marshmallow(app)
+#
+#
+# # CONFIGURACIONES
+# @app.route('/Configuracion')
+# @check_token
+# def TGlzdF9Db25maQ():
+#     return List_Configuracion()
 
 
-@app.route('/Editar_Configuracion/<string:id>')
-@check_token
-def R2V0X0NvbmZp(id):
-    return Get_Configuracion(id)
+# @app.route('/Registrar_configuracion', methods=['POST'])
+# @check_token
+# @check_habilitado
+# def Q3JlYXRlX0NvbmZp():
+#     return Create_Configuracion()
+#
+#
+# @app.route('/Editar_Configuracion/<string:id>')
+# @check_token
+# def R2V0X0NvbmZp(id):
+#     return Get_Configuracion(id)
+#
+#
+# @app.route('/Actualizar_Configuracion/<string:id>', methods=['GET', 'POST'])
+# @check_token
+# @check_habilitado
+# def VXBkYXRlX0NvbmZp(id):
+#     return Update_Configuracion(id)
+#
 
+# # LOGIN
+# @app.route('/')
+# def SW5pdA():
+#     return Init()
 
-@app.route('/Actualizar_Configuracion/<string:id>', methods=['GET', 'POST'])
-@check_token
-@check_habilitado
-def VXBkYXRlX0NvbmZp(id):
-    return Update_Configuracion(id)
-
-
-# LOGIN
 @app.route('/')
 def SW5pdA():
-    return Init()
+    return 'Welcome'
 
-
-@app.route('/Login', methods=['GET', 'POST'])
-def TG9naW4():
-    return Login()
-
-
-@app.route('/Logout')
-def TG9nb3V0():
-    return Logout()
-
-
-# EMPRESAS
-@app.route('/Empresas')
-@check_token
-def TGlzdF9FbXByZXNhcw():
-    return List_Empresas()
-
-
-@app.route('/Registrar_Empresa', methods=['POST'])
-@check_token
-@check_habilitado
-def Y3JlYXRlX0VtcHJlc2Fz():
-    return create_Empresas()
-
-
-@app.route('/Editar_Empresa/<string:id>')
-@check_token
-def Z2V0X2VtcHJlc2E(id):
-    return get_empresa(id)
-
-
-@app.route('/Update_Empresa/<string:id>', methods=['POST'])
-@check_token
-@check_habilitado
-def dXBkYXRlX2VtcHJlc2E(id):
-    return update_empresa(id)
-
-
-# USUARIOS
-@app.route('/Usuarios')
-@check_token
-def VXN1YXJpb3M():
-    return Lis_Usuarios()
-
-
-@app.route('/Registrar_usuario', methods=['POST'])
-@check_token
-@check_habilitado
-def Y3JlYXRl():
-    return create()
-
-
-@app.route('/Editar_Usuario/<string:id>')
-@check_token
-@check_habilitado
-def Z2V0X3VzdWFyaW8(id):
-    return get_usuario(id)
-
-
-@app.route('/Update_Usuario/<id>', methods=['POST'])
-@check_token
-@check_habilitado
-def dXBkYXRl(id):
-    return update(id)
-
-
+# @app.route('/Login', methods=['GET', 'POST'])
+# def TG9naW4():
+#     return Login()
 #
-# @app.route('/Eliminar_usuario/<string:id>')
+#
+# @app.route('/Logout')
+# def TG9nb3V0():
+#     return Logout()
+#
+#
+# # EMPRESAS
+# @app.route('/Empresas')
 # @check_token
-# @check_rol
-# @check_rol_admin
-# def ZGVsZXRl(id):
-#     return delete(id)
+# def TGlzdF9FbXByZXNhcw():
+#     return List_Empresas()
 #
-@app.route('/Accesos_Usuario/<string:id>')
-@check_token
-def YWNjZXNvcw(id):
-    return accesos(id)
-
-
 #
-@app.route('/Asignar_Acceso/<id>', methods=['POST'])
-@check_token
-@check_habilitado
-def Y3JlYXRlX2FjY2Vzb3M(id):
-    return create_accesos(id)
-
-
-@app.route('/Eliminar_Acceso/<string:id>/<string:aid>/<string:rid>')
-@check_token
-@check_habilitado
-def ZGVsZXRlX2FjY2Vzb3M(id, aid, rid):
-    return delete_accesos(id, aid, rid)
-
-
-
-# -------------------------------ETIQUETAS**------------------------------*
+# @app.route('/Registrar_Empresa', methods=['POST'])
+# @check_token
+# @check_habilitado
+# def Y3JlYXRlX0VtcHJlc2Fz():
+#     return create_Empresas()
+#
+#
+# @app.route('/Editar_Empresa/<string:id>')
+# @check_token
+# def Z2V0X2VtcHJlc2E(id):
+#     return get_empresa(id)
+#
+#
+# @app.route('/Update_Empresa/<string:id>', methods=['POST'])
+# @check_token
+# @check_habilitado
+# def dXBkYXRlX2VtcHJlc2E(id):
+#     return update_empresa(id)
+#
+#
+# # USUARIOS
+# @app.route('/Usuarios')
+# @check_token
+# def VXN1YXJpb3M():
+#     return Lis_Usuarios()
+#
+#
+# @app.route('/Registrar_usuario', methods=['POST'])
+# @check_token
+# @check_habilitado
+# def Y3JlYXRl():
+#     return create()
+#
+#
+# @app.route('/Editar_Usuario/<string:id>')
+# @check_token
+# @check_habilitado
+# def Z2V0X3VzdWFyaW8(id):
+#     return get_usuario(id)
+#
+#
+# @app.route('/Update_Usuario/<id>', methods=['POST'])
+# @check_token
+# @check_habilitado
+# def dXBkYXRl(id):
+#     return update(id)
+#
+#
+# #
+# # @app.route('/Eliminar_usuario/<string:id>')
+# # @check_token
+# # @check_rol
+# # @check_rol_admin
+# # def ZGVsZXRl(id):
+# #     return delete(id)
+# #
+# @app.route('/Accesos_Usuario/<string:id>')
+# @check_token
+# def YWNjZXNvcw(id):
+#     return accesos(id)
+#
+#
+# #
+# @app.route('/Asignar_Acceso/<id>', methods=['POST'])
+# @check_token
+# @check_habilitado
+# def Y3JlYXRlX2FjY2Vzb3M(id):
+#     return create_accesos(id)
+#
+#
+# @app.route('/Eliminar_Acceso/<string:id>/<string:aid>/<string:rid>')
+# @check_token
+# @check_habilitado
+# def ZGVsZXRlX2FjY2Vzb3M(id, aid, rid):
+#     return delete_accesos(id, aid, rid)
+#
+#
+#
+# # -------------------------------ETIQUETAS**------------------------------*
 @app.route('/Etiquetas-funciones')
 @check_token
 @check_habilitado
@@ -371,5 +378,4 @@ def reporte_excel_RxTs():
     return reporte_excel_RxT()
 
 if __name__ == "__main__":
-    mail.init_app(app)
-    app.run(port=5000, debug=True)
+    app.run()
